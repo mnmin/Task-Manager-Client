@@ -22,6 +22,7 @@ const LoggedInUserProvider = ({ children }) => {
   useEffect(() => {
     if (token) {
       const { userId } = jwtDecode(token);
+      console.log("token", token)
 
       client
         .get(`/user/${userId}`)

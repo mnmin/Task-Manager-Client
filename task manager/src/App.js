@@ -1,4 +1,4 @@
-import { Routes, Route, /*Navigate,*/ useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import jwt_decode from "jwt-decode";
 import "./App.css";
@@ -8,7 +8,7 @@ import RegistrationPage from "./components/users/registration/RegistrationPage.j
 // import PostsPage from "./components/posts/PostsPage";
 // import Profile from "./components/profile/Profile";
 // import EnrolmentPage from "./pages/enrollment";
-// import Header from "./components/Header/Header";
+import Header from "./components/header/Header";
 import client from "./utils/client";
 // import Account from "./components/account/Account";
 // import CreateCohort from "./pages/createCohort";
@@ -26,7 +26,7 @@ import client from "./utils/client";
 // import ModuleCreate from "./components/module/ModuleCreate";
 // import UnitCreate from "./components/unit/UnitCreate";
 // import LessonCreate from "./components/lessons/LessonCreate";
-
+import TaskPage from "./components/tasks/TaskPage";
 function App() {
   const navigate = useNavigate();
 
@@ -60,16 +60,16 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/signup" element={<RegistrationPage />} />
-        {/* <Route element={<AuthenticateUser />}>
-          <Route path="/events" element={<DeveloperPage />} />
+        <Route element={<AuthenticateUser />}>
+          {/* <Route path="/events" element={<DeveloperPage />} />
           <Route path="/cohort" element={<CreateCohort />} />
           <Route
             path="/user/:id/profile"
             element={<Profile getUserId={getLoggedInUserId} />}
           />
-          <Route path="/cohort/:cohortId" element={<ViewCohort />} />
-          <Route path="/posts" element={<PostsPage />} />
-          <Route path="/enrolment" element={<EnrolmentPage />} />
+          <Route path="/cohort/:cohortId" element={<ViewCohort />} /> */}
+          <Route path="/tasks" element={<TaskPage />} />
+          {/* <Route path="/enrolment" element={<EnrolmentPage />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/account" element={<Account />} />
           <Route path="/exercise" element={<Exercise />} />
@@ -83,28 +83,28 @@ function App() {
           <Route path="/lesson/:id" element={<LessonView />} />
           <Route path="/module/create" element={<ModuleCreate />} />
           <Route path="/unit/create" element={<UnitCreate />} />
-          <Route path="/lesson/create" element={<LessonCreate />} />
-        </Route> */}
+          <Route path="/lesson/create" element={<LessonCreate />} /> */}
+        </Route>
       </Routes>
     </div>
   );
 }
 
-// function isLoggedIn() {
-//   const loadedToken = localStorage.getItem("token");
-//   return loadedToken?.length > 1;
-// }
+function isLoggedIn() {
+  const loadedToken = localStorage.getItem("token");
+  return loadedToken?.length > 1;
+}
 
-// const AuthenticateUser = ({ children, redirectPath = "/" }) => {
-//   if (!isLoggedIn()) {
-//     return <Navigate to={redirectPath} replace />;
-//   }
+const AuthenticateUser = ({ children, redirectPath = "/" }) => {
+  if (!isLoggedIn()) {
+    return <Navigate to={redirectPath} replace />;
+  }
 
-//   return (
-//     <>
-//       <Header companyName={`Task Io!!!`} />
-//     </>
-//   );
-// };
+  return (
+    <>
+      <Header companyName={`Task Io!!!`} />
+    </>
+  );
+};
 
 export default App;

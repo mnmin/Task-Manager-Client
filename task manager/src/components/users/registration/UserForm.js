@@ -38,21 +38,21 @@ const UserForm = ({ handleSubmit, handleChange }) => {
         onChange={handleChange}
         required
       />
-      <TextField
+      {/* <TextField
         className="user-form-input"
         label="Bio"
         variant="outlined"
         name="biography"
         onChange={handleChange}
-      />
-      <TextField
+      /> */}
+      {/* <TextField
         className="user-form-input"
         type="url"
         label="GitHub URL"
         variant="outlined"
         name="github_url"
         onChange={handleChange}
-      />
+      /> */}
       <Button id="user-submit-button" type="submit" variant="contained">
         Submit
       </Button>
