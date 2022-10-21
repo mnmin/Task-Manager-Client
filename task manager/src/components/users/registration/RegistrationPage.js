@@ -30,7 +30,7 @@ const RegistrationPage = () => {
   }
 
   const login = () => {
-    navigate("../posts", { replace: true });
+    navigate("../tasks", { replace: true });
   };
 
   const registerUser = (event) => {
@@ -84,7 +84,7 @@ const RegistrationPage = () => {
             An account has already been registered with this email
           </Alert>
         )}
-        <p>Status: {successRegisterUser.status}</p>
+        <p>{successRegisterUser.status}</p>
         <UserForm handleChange={handleChange} handleSubmit={registerUser} />
       </div>
     </div>

@@ -18,15 +18,17 @@ const LoggedInUserProvider = ({ children }) => {
   const [token, setToken] = useState(
     localStorage.getItem(process.env.REACT_APP_USER_TOKEN) || ''
   );
+  // console.log("LoggedInUser User--------->", user)
 
   useEffect(() => {
+    console.log("CALLED LOGGEDINUSER", token)
     if (token) {
       const { userId } = jwtDecode(token);
-      console.log("token", token)
-
+      // console.log("LoggedInUser token---------->", token)
+      // console.log("LoggedInUser userID --------->", userId)
       client
         .get(`/user/${userId}`)
-        .then(res => setUser(res.data.data.user))
+        .then(res => setUser(res.data.user))
         .catch(err => console.error('[User Error]', err.response));
     }
   }, [token]);

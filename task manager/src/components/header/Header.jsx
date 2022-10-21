@@ -3,12 +3,11 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Stack } from '@mui/material';
 import { useNavigate, Outlet, Link } from 'react-router-dom';
-import Avatar from '@mui/material/Avatar';
 
 import { useEffect, useState } from 'react';
 import client from '../../utils/client';
 import { Alert } from '@mui/material';
-import { useLoggedInUser } from '../../context/LoggedInUser.jsx';
+import { useLoggedInUser } from '../../context/LoggedInUser';
 
 import './style.css';
 
@@ -16,9 +15,12 @@ const Header = ({ companyName }) => {
   const navigate = useNavigate();
   const [authError, setAuthError] = useState(false);
   const userLoggedIn = useLoggedInUser().user;
+  console.log("Header userLoggedIn--------->", userLoggedIn)
 
   useEffect(() => {
+    console.log('CALLED HEADER', userLoggedIn)
     const userId = userLoggedIn.id;
+    // console.log("Header useEffect userID--------->", userId)
     if (userId === null) {
       return;
     }
@@ -60,25 +62,18 @@ const Header = ({ companyName }) => {
       <Box className="header-container">
         <Box className="logo-container">
           <Typography fontSize={22}>
-            <Link to="/posts">{companyName}</Link>
+            <Link to="/tasks">{companyName}</Link>
           </Typography>
         </Box>
 
         <Box>
           <Stack spacing={2} direction="row">
-            {/* {userLoggedIn.role === 'DEVELOPER' && <Button variant="contained" onClick={() => handleClick('events')}>Events</Button>} */}
             <Button variant="contained" href="/tasks">
               Tasks
             </Button>
-            {/* <Button variant="contained" onClick={() => handleClick('profile')}>
-              Profile
-            </Button> */}
             <Button id="user-signout-button" variant="contained" onClick={handleLogOut}>
               Logout
             </Button>
-            {/* <Button onClick={() => handleClick('account')}>
-              <Avatar src={userLoggedIn.profile_image_url} />
-            </Button> */}
           </Stack>
         </Box>
       </Box>

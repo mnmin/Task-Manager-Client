@@ -26,7 +26,7 @@ const LoginPage = () => {
 
   const loginUser = (event) => {
     event.preventDefault();
-    console.log("USER ---------------------->", user);
+    console.log("LoginPage User---------------------->", user);
     client
       .post("/login", user)
       .then((res) => {
@@ -65,7 +65,7 @@ const LoginPage = () => {
     <div className="auth-page-container">
       <div className="login-page">
         <div>
-          <h1>Task Manager!!!!</h1>
+          <h1>Task Io</h1>
         </div>
         <Link id="user-registration-link" to="/signup">
           sign up
@@ -74,7 +74,7 @@ const LoginPage = () => {
           login
         </Link>
         <h1>Login</h1>
-        <p>Status: {successLogin.status}</p>
+        <p>{successLogin.status}</p>
         <UserForm handleChange={handleChange} handleSubmit={loginUser} />
         {location.state !== null && location.state.token === "expired" && (
           <Alert severity="error">
