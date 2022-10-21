@@ -72,12 +72,14 @@ const RegistrationPage = () => {
   return (
     <div className="auth-page-container">
       <div className="registration-page">
-        <Link id="user-registration-link" to="/signup">
-          sign up
-        </Link>{" "}
-        <Link id="user-login-link" to="/">
-          login
-        </Link>
+        <div className="inputs">
+          <Link id="user-registration-link" to="/signup">
+            <p>sign up</p>
+          </Link>{" "}
+          <Link id="user-login-link" to="/">
+            <p>login</p>
+          </Link>
+        </div>
         <h1>Sign up</h1>
         {errorMissingEmail && (
           <Alert severity="error">

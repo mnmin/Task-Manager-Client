@@ -7,6 +7,7 @@ import userBlankData from "../utils/userHelpers";
 import UserForm from "./UserForm";
 import client from "../../../utils/client";
 import { useLoggedInUser } from "../../../context/LoggedInUser";
+import "./style.css";
 
 const LoginPage = () => {
   const { setToken } = useLoggedInUser();
@@ -67,23 +68,27 @@ const LoginPage = () => {
         <div>
           <h1>Task Io</h1>
         </div>
-        <Link id="user-registration-link" to="/signup">
-          sign up
-        </Link>
-        <Link id="user-login-link" to="/">
-          login
-        </Link>
+        <div className="signup-login">
+          <Link id="user-registration-link" to="/signup">
+            <p>sign up</p>
+          </Link>
+          <Link id="user-login-link" to="/">
+            <p>login</p>
+          </Link>
+        </div>
         <h1>Login</h1>
         <p>{successLogin.status}</p>
-        <UserForm handleChange={handleChange} handleSubmit={loginUser} />
-        {location.state !== null && location.state.token === "expired" && (
-          <Alert severity="error">
-            Your session has expired. Please login again.
-          </Alert>
-        )}
-        {errorLogin && (
-          <Alert severity="error">Email or Password is incorrect</Alert>
-        )}
+        <div className="user-form">
+          <UserForm handleChange={handleChange} handleSubmit={loginUser} />
+          {location.state !== null && location.state.token === "expired" && (
+            <Alert severity="error">
+              Your session has expired. Please login again.
+            </Alert>
+          )}
+          {errorLogin && (
+            <Alert severity="error">Email or Password is incorrect</Alert>
+          )}
+        </div>
       </div>
     </div>
   );

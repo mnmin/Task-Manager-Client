@@ -1,0 +1,33 @@
+.login-page, h1{
+    font-size: large;
+
+}
+.user-form {
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.signup-login {
+    font-size: larger;
+}
+
+.signup-login, p {
+    color: rgb(198, 178, 139);
+    display: flex;
+}
+
+.user-form {
+    display: flex;
+    border-radius: 15px;
+}
+
+.user-form-fields{
+    margin-bottom: 1rem;
+}
+
+.app-name-login-page, h1 {
+    font-size: larger;
+}
