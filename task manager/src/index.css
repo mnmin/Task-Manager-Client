@@ -1,6 +1,6 @@
 :root {
   /* change this value for the background colour! */
-  --bg-color: #2a2c30;
+  --bg-color: #47394c;
   --primary-color: #ffa500;
   --font-family: 'Poppins', sans-serif;
 }
@@ -23,6 +23,6 @@ code {
 }
 
 a {
-  color: white;
+  color: rgb(168, 172, 225);
   text-decoration: none;
 }
