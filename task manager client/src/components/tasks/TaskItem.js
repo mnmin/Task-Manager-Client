@@ -160,7 +160,7 @@ const TaskItem = ({ task, setTaskResponse }) => {
             <p className="task-content">{task.linksUrl}</p>
           </>
         )}
-        {/* <p className="post-content">{task.taskDescription}</p> */}
+        {/* <p className="task-content">{task.taskDescription}</p> */}
         <div className="comment-nav-wrap">
           {isOwner && (
             <div className="edit-button-form-wrap">
