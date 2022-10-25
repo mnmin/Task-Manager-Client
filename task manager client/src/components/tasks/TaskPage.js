@@ -26,7 +26,7 @@ const TasksPage = () => {
 
     client.get(`/user/${id}`).catch((err) => console.error("user error", err));
     renderTasksByUserId(id, setTasks);
-    console.log("TASKPAGE tasks", tasks);
+    console.log("TASKPAGE tasks------------------------>", tasks);
     setTask({ ...task });
     // eslint-disable-next-line
   }, [taskResponse]);

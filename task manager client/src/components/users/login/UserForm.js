@@ -22,7 +22,7 @@ const UserForm = ({ handleSubmit, handleChange }) => {
         onChange={handleChange}
       />
       <Button id="user-submit-button" type="submit" variant="contained">
-        Submit
+        Log In
       </Button>
     </form>
   );

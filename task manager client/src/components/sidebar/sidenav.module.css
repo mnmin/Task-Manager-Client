@@ -1,8 +1,9 @@
 .sidenav {
     width: 250px;
     transition: width 0.3s ease-in-out;
-    height: 100hv;
-    background-color: rgb(10,25,41);
+    /* height: max(100vh, 100%); */
+    height: 100vh;
+    background-color: rgba(10, 25, 41, 0.364);
     padding-top: 28px;
 }
 .sidenavClosed {

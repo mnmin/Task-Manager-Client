@@ -24,12 +24,14 @@ const theme = createTheme({
 
 const TaskItem = ({ task, setTaskResponse }) => {
   const [isOwner, setIsOwner] = useState(true);
-  const [isPrivate, setIsPrivate] = useState(task.isPrivate);
+  // const [isPrivate, setIsPrivate] = useState(task.isPrivate);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editTaskName, setEditTaskName] = useState("");
   const [editTaskDescription, setEditTaskDescription] = useState("");
   const [editTaskLinksUrl, setEditTaskLinksUrl] = useState("");
+  const [editTaskStatus, setEditTaskStatus] = useState("");
+  const [editTaskPriority, setEditTaskPriority] = useState("");
   const [editError, setEditError] = useState("");
   const [openDialog, setOpenDialog] = useState(false);
   const { user } = useLoggedInUser();
@@ -56,7 +58,9 @@ const TaskItem = ({ task, setTaskResponse }) => {
       task.id,
       editTaskName,
       editTaskDescription,
-      editTaskLinksUrl
+      editTaskLinksUrl,
+      editTaskStatus,
+      editTaskPriority
     );
     if (res?.status === "fail") {
       return setEditError(res.message);
@@ -137,27 +141,50 @@ const TaskItem = ({ task, setTaskResponse }) => {
                 inputProps={{ maxLength: 150 }}
                 onChange={(e) => setEditTaskLinksUrl(e.target.value)}
               ></TextField>
+              <TextField
+                fullWidth
+                value={task.status}
+                variant="outlined"
+                size="small"
+                // multiline
+                inputProps={{ maxLength: 150 }}
+                onChange={(e) => setEditTaskStatus(e.target.value)}
+              ></TextField>
+              <TextField
+                fullWidth
+                value={task.priority}
+                variant="outlined"
+                size="small"
+                // multiline
+                inputProps={{ maxLength: 150 }}
+                onChange={(e) => setEditTaskPriority(e.target.value)}
+              ></TextField>
+              {/* <div className="icon-buttons"> */}
               <Button
                 className="submit-edited-task" //setOpenDialog
                 onClick={handleEditTask}
               >
-                <ArrowUpwardIcon />
+                <ArrowUpwardIcon className="icon" />
               </Button>
+
               <Button
                 className="cancel-edit"
                 onClick={() => {
                   setIsEditing(false);
                 }}
               >
-                <ClearIcon />
+                <ClearIcon classname="icon" />
               </Button>
             </div>
+            {/* </div> */}
           </>
         ) : (
           <>
             <p className="task-content">{task.taskName}</p>
             <p className="task-content">{task.taskDescription}</p>
             <p className="task-content">{task.linksUrl}</p>
+            <p className="task-content-select">{task.status}</p>
+            <p className="task-content-select">{task.priority}</p>
           </>
         )}
         {/* <p className="task-content">{task.taskDescription}</p> */}

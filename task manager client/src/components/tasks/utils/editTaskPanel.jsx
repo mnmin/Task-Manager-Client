@@ -5,7 +5,11 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-// import React from 'react';
+import React from 'react';
+import InputLabel from '@mui/material/InputLabel';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
 import { useState } from 'react';
 //import client from '../../../utils/client';
 import { useLoggedInUser } from "../../../context/LoggedInUser";
@@ -17,6 +21,8 @@ export const FormUpdateTaskDialog = ({ openDialog, setOpenDialog, setTaskRespons
   const [editTaskName, setEditTaskName] = useState(task.taskName);
   const [editTaskDescription, setEditTaskDescription] = useState(task.taskDescription);
   const [editTaskLinksUrl, setEditTaskLinksUrl] = useState(task.linksUrl);
+  const [editTaskStatus, setEditTaskStatus] = useState(task.status)
+  const [editTaskPriority, setEditTaskPriority] = useState(task.priority)
 //   const [taskResponse, setTaskResponse] = useState("");
   const { user } = useLoggedInUser();
 
@@ -32,7 +38,7 @@ export const FormUpdateTaskDialog = ({ openDialog, setOpenDialog, setTaskRespons
 //   };
   
   const handleEditTask = async () => {
-    const res = await editTask(setTaskResponse, task.id, editTaskName, editTaskDescription, editTaskLinksUrl);
+    const res = await editTask(setTaskResponse, task.id, editTaskName, editTaskDescription, editTaskLinksUrl, editTaskStatus, editTaskPriority);
     if (res?.status === "fail") {
       return setEditError(res.message);
     }
@@ -89,6 +95,34 @@ export const FormUpdateTaskDialog = ({ openDialog, setOpenDialog, setTaskRespons
             inputProps={{ maxLength: 150 }}
             onChange={(e) => setEditTaskLinksUrl(e.target.value)}
           />
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Task Status</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={editTaskStatus}
+                  label="Age"
+                  onChange={(e) => setEditTaskStatus(e.target.value)}
+                >
+                  <MenuItem value={"TODO"}>To Do</MenuItem>
+                  <MenuItem value={"INPROGRESS"}>In Progress</MenuItem>
+                  <MenuItem value={"COMPLETED"}>Completed</MenuItem>
+                </Select>
+            </FormControl>
+            <FormControl fullWidth>
+            <InputLabel id="task-priority-select-label">Task Priority</InputLabel>
+              <Select
+                labelId="task-priority-select-label"
+                id="task-priority-select"
+                value={editTaskPriority}
+                label="Age"
+                onChange={(e) => setEditTaskPriority(e.target.value)}
+              >
+                <MenuItem value={"HIGH"}>High</MenuItem>
+                <MenuItem value={"MEDIUM"}>Medium</MenuItem>
+                <MenuItem value={"LOW"}>Low</MenuItem>
+              </Select>
+            </FormControl>  
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpenDialog(false)}>Cancel</Button>

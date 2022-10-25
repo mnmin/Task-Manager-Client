@@ -1,9 +1,32 @@
-import client from '../../../utils/client';
+import client from "../../../utils/client";
 
-export const editTask = async (setResponse, taskId, taskName, taskDescription, linksUrl) => {
-  console.log("EDITTASK --------------->", setResponse, taskId, taskName, taskDescription, linksUrl)
+export const editTask = async (
+  setResponse,
+  taskId,
+  taskName,
+  taskDescription,
+  linksUrl,
+  status,
+  priority
+) => {
+  console.log(
+    "EDITTASK --------------->",
+    setResponse,
+    taskId,
+    taskName,
+    taskDescription,
+    linksUrl,
+    status,
+    priority
+  );
   try {
-    const { data } = await client.patch(`/task/${taskId}`, { taskName, taskDescription, linksUrl });
+    const { data } = await client.patch(`/task/${taskId}`, {
+      taskName,
+      taskDescription,
+      linksUrl,
+      status,
+      priority,
+    });
     setResponse(data);
     return;
   } catch (error) {
