@@ -33,6 +33,7 @@ const TasksPage = () => {
 
   return (
     <>
+      <Sidenav />
       <div className="tasks-section">
         {taskError && <Alert severity="error">Must provide content</Alert>}
 

@@ -64,7 +64,7 @@ function App() {
   return (
     <div style={{ backgroundImage: LandingPage }}>
       <div className="App">
-        {isUserLoggedIn ? <Sidenav /> : null}
+        {/* {isUserLoggedIn ? <Sidenav /> : null} */}
         <main>
           <Routes>
             <Route path="/" element={<LoginPage />} />
