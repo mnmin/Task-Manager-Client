@@ -1,13 +1,19 @@
+.sidenav-main {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
 .tasks-main {
   /* padding: 10px; */
   /* display: flex; */
   display: inline-block;  
   width: 100vw;
 }
+
 .tasks-section {
     margin: 1rem;
-    /* display: flex; */
-    display: inline-block;
+    display: flex;
+    /* display: inline-block; */
     flex-direction: column;
     align-items: center;
   }
@@ -15,7 +21,7 @@
   .tasks-list {
     margin: 20px;
     list-style: none;
-    max-width: 60rem;
+    /* max-width: 60rem; */
     width: 100%;
   }
   
@@ -104,16 +110,6 @@
   .try-again {
     margin-left: 0.5rem;
     color: red;
-  }
-  
-  .MuiAvatarGroup-root {
-    height: 24px !important;
-  }
-  .MuiAvatarGroup-avatar {
-    cursor: pointer;
-    font-size: 1rem !important;
-    width: 24px !important;
-    height: 24px !important;
   }
 
   .topics-list {

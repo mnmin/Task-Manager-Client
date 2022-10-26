@@ -33,26 +33,30 @@ const TasksPage = () => {
 
   return (
     <>
-      <Sidenav />
-      <div className="tasks-section">
-        {taskError && <Alert severity="error">Must provide content</Alert>}
+      <div className="sidenav-main">
+        <Sidenav />
+        <div className="tasks-section">
+          {taskError && <Alert severity="error">Must provide content</Alert>}
 
-        <p>{taskResponse.status}</p>
+          <p>{taskResponse.status}</p>
 
-        {tasks?.length > 0 ? (
-          <ul className="tasks-list">
-            {tasks?.map((task, index) => (
-              <TaskItem
-                task={task}
-                key={index}
-                setTask={setTask}
-                setTaskResponse={setTaskResponse}
-              />
-            ))}
-          </ul>
-        ) : (
-          <p className="no-posts-message">There are no tasks at the moment.</p>
-        )}
+          {tasks?.length > 0 ? (
+            <ul className="tasks-list">
+              {tasks?.map((task, index) => (
+                <TaskItem
+                  task={task}
+                  key={index}
+                  setTask={setTask}
+                  setTaskResponse={setTaskResponse}
+                />
+              ))}
+            </ul>
+          ) : (
+            <p className="no-posts-message">
+              There are no tasks at the moment.
+            </p>
+          )}
+        </div>
       </div>
     </>
   );
