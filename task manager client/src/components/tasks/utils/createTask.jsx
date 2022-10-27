@@ -169,14 +169,16 @@ export const FormCreateTaskDialog = ({
       setEditTaskLinksUrl(task.linksUrl);
       setEditTaskStatus(task.status);
       setEditTaskPriority(task.priority);
+      // setEditTaskTopics([]);
+      console.log("EDIT TASK TOPICS ---------->", editTaskTopics)
       task.topics.forEach((topic) => {
-        const topicObj = { topic };
-        console.log("      Value a ", topic, editTaskTopics, topicObj);
-        setEditTaskTopics({
+        console.log("      Value a ", topic, editTaskTopics);
+        // editTaskTopics.push(topic);
+        setEditTaskTopics([
           ...editTaskTopics,
-          topicObj,
-        });
-        console.log("      Value b ", topic, editTaskTopics, topicObj);
+          topic,
+        ]);
+        console.log("      Value b ", topic, editTaskTopics);
       });
       // setEditTaskTopics(task.topics);
       console.log(
@@ -235,8 +237,19 @@ export const FormCreateTaskDialog = ({
             onChange={(e) => setEditTaskLinksUrl(e.target.value)}
           />
           <ul className="topics-list">
-            {editTaskTopics.map((topic, index) => (
+            {/* {editTaskTopics.map((topic, index) => (
               <li className="topic-list-item" key={`${index}`} tabIndex="0">
+                <span>{topic}</span>
+                {
+                  <DeleteForeverIcon
+                    className="topic-list-item-delete"
+                    tabIndex="0"
+                    onClick={() => handleDeleteTopic(topic)}
+                  />
+                }
+              </li> */}
+            {editTaskTopics.map(topic => (
+              <li className="topic-list-item" tabIndex="0">
                 <span>{topic}</span>
                 {
                   <DeleteForeverIcon
