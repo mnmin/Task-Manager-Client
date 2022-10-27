@@ -107,6 +107,15 @@
     flex-direction: row;
   }
   
+  .button-nav-wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 0.5rem;
+    margin-left: auto;
+    margin-top: 1rem;
+  }
+
   .try-again {
     margin-left: 0.5rem;
     color: red;

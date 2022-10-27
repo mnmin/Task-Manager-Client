@@ -5,6 +5,7 @@ export const editTask = async (
   taskId,
   taskName,
   taskDescription,
+  topics,
   linksUrl,
   status,
   priority
@@ -15,6 +16,7 @@ export const editTask = async (
     taskId,
     taskName,
     taskDescription,
+    topics,
     linksUrl,
     status,
     priority
@@ -24,6 +26,7 @@ export const editTask = async (
       taskName,
       taskDescription,
       linksUrl,
+      topics,
       status,
       priority,
     });

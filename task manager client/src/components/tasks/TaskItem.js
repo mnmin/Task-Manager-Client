@@ -3,6 +3,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ClearIcon from "@mui/icons-material/Clear";
+import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import { useEffect, useState } from "react";
 import { deleteTask } from "./utils/deleteTask";
 import { editTask } from "./utils/editTask";
@@ -12,6 +13,7 @@ import { useLoggedInUser } from "../../context/LoggedInUser";
 import { blue, yellow } from "@mui/material/colors";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { FormUpdateTaskDialog } from "./utils/editTaskPanel";
+import { FormCreateTaskDialog } from "./utils/createTask";
 
 const theme = createTheme({
   palette: {
@@ -34,6 +36,7 @@ const TaskItem = ({ task, setTaskResponse }) => {
   const [editTaskPriority, setEditTaskPriority] = useState("");
   const [editError, setEditError] = useState("");
   const [openDialog, setOpenDialog] = useState(false);
+  const [dialogType, setDialogType] = useState(3); // 3 = view
   const { user } = useLoggedInUser();
   const navigate = useNavigate();
 
@@ -79,10 +82,17 @@ const TaskItem = ({ task, setTaskResponse }) => {
 
   let liClasses = "task-item";
 
-  const handleEdit = () => {
+  const handleOpenViewDialog = () => {
+    setDialogType(3);
+    setOpenDialog(true);
+    console.log("HANDLE VIEW -------------------->", openDialog, task);
+  };
+
+  function handleOpenEditDialog() {
+    setDialogType(2);
     setOpenDialog(true);
     console.log("HANDLE EDIT -------------------->", openDialog, task);
-  };
+  }
 
   const TryAgain = () => {
     try {
@@ -183,27 +193,39 @@ const TaskItem = ({ task, setTaskResponse }) => {
             <p className="task-content">{task.taskName}</p>
             <p className="task-content">{task.taskDescription}</p>
             <p className="task-content">{task.linksUrl}</p>
+            {/* <p className="task-content">{task.topics}</p> */}
             <p className="task-content-select">{task.status}</p>
             <p className="task-content-select">{task.priority}</p>
           </>
         )}
         {/* <p className="task-content">{task.taskDescription}</p> */}
-        <div className="comment-nav-wrap">
+        <div className="button-nav-wrap">
+          {isOwner && (
+            <div className="view-button-form-wrap">
+                <Button
+                  className="view-button-icon"
+                  onClick={handleOpenViewDialog}
+                >
+                  <OpenInFullIcon />
+                </Button>
+            </div>
+          )}
           {isOwner && (
             <div className="edit-button-form-wrap">
-              <FormUpdateTaskDialog
+              <FormCreateTaskDialog
+                dialogType={dialogType}
                 openDialog={openDialog}
                 setOpenDialog={setOpenDialog}
                 setTaskResponse={setTaskResponse}
                 setEditError={setEditError}
                 task={task}
-              ></FormUpdateTaskDialog>
+              />
               {!isEditing && (
                 <Button
                   className="edit-button-icon"
                   //onClick={() => setIsEditing(true)}
                   //onClick={() => {setOpenDialog(true)}}
-                  onClick={handleEdit}
+                  onClick={handleOpenEditDialog}
                 >
                   <EditIcon />
                 </Button>

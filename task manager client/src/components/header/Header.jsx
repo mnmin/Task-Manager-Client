@@ -64,8 +64,10 @@ const Header = ({ companyName }) => {
     <>
       {authError && <Alert severity="error">This user cannot be found</Alert>}
       <FormCreateTaskDialog
+            dialogType={1}
             openDialog={openDialog}
             setOpenDialog={setOpenDialog}
+            task={{taskName: "", taskDescription: "", linksUrl: "", topics: "", status: "TODO", priority: "MEDIUM"}}
             // handleClick={handleClick}
           />
       <Box className="header-container">

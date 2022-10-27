@@ -19,7 +19,7 @@ body {
   /* background-position: center;  */
   background-image: url("./assets/Landing_Page.jpg");
   background-repeat: repeat;
-  background-size: cover;
+  /* background-size: cover; */
   color: #fff;
 }
 

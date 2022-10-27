@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import client from "../../utils/client";
 import "./style.css";
 import jwt_decode from "jwt-decode";
-import { renderTasks, renderTasksByUserId } from "./utils/getAllTasks";
+import { renderTasks, renderTasksByUserId, renderTasksByUserIdAndPriority } from "./utils/getAllTasks";
 import TaskItem from "./TaskItem";
 import { Alert } from "@mui/material";
 import Sidenav from "../sidebar/sidenav";
@@ -25,7 +25,8 @@ const TasksPage = () => {
     console.log("TASKPAGE TOKEN", token, id);
 
     client.get(`/user/${id}`).catch((err) => console.error("user error", err));
-    renderTasksByUserId(id, setTasks);
+    // renderTasksByUserId(id, setTasks);
+    renderTasksByUserIdAndPriority(id, 1, setTasks);
     console.log("TASKPAGE tasks------------------------>", tasks);
     setTask({ ...task });
     // eslint-disable-next-line
