@@ -44,10 +44,17 @@ export function renderTasksByUserId(userId, setTasks) {
     .catch((err) => console.error(err));
 }
 
+<<<<<<< HEAD
 async function getAllTasksByUserIdAndPriority(userId, priorityOrder, priorityValues) {
   try {
     if (userId) {
       const response = await client.get(`/tasks/${userId}/priorityOrder/${priorityOrder}/priorityValues/${priorityValues}`);
+=======
+async function getAllTasksByUserIdAndPriority(userId, priorityOrder) {
+  try {
+    if (userId) {
+      const response = await client.get(`/tasks/${userId}/priorityOrder/${priorityOrder}`);
+>>>>>>> 5b27ff40b22a332faf6b0645d0cd1d8503b41db1
       return response.data.data;
     }
   } catch (err) {
@@ -55,9 +62,15 @@ async function getAllTasksByUserIdAndPriority(userId, priorityOrder, priorityVal
   }
 }
 
+<<<<<<< HEAD
 export function renderTasksByUserIdAndPriority(userId, priorityOrder, priorityValues, setTasks) {
   let allTasks = [];
   getAllTasksByUserIdAndPriority(userId, priorityOrder, priorityValues)
+=======
+export function renderTasksByUserIdAndPriority(userId, priorityOrder, setTasks) {
+  let allTasks = [];
+  getAllTasksByUserIdAndPriority(userId, priorityOrder)
+>>>>>>> 5b27ff40b22a332faf6b0645d0cd1d8503b41db1
     .then((response) => {
       console.log("GETALLTASKS by USERID and PRIORITY response", response);
       allTasks = response;

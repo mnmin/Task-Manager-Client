@@ -158,17 +158,47 @@ export const FormCreateTaskDialog = ({
 
   useEffect(() => {
     if (openDialog) {
+<<<<<<< HEAD
+=======
+      console.log(
+        "USEEFFECT OPEN DIALOG 1 ------------------------------------->",
+        openDialog,
+        task,
+        editTaskTopics
+      );
+>>>>>>> 5b27ff40b22a332faf6b0645d0cd1d8503b41db1
       setEditTaskName(task.taskName);
       setEditTaskDescription(task.taskDescription);
       setEditTaskLinksUrl(task.linksUrl);
       setEditTaskStatus(task.status);
       setEditTaskPriority(task.priority);
+<<<<<<< HEAD
       setEditTaskTopics([]);
       let topics = []
       task.topics.forEach((topic) => {
         topics.push(topic);
       });
       setEditTaskTopics(topics);
+=======
+      // setEditTaskTopics([]);
+      console.log("EDIT TASK TOPICS ---------->", editTaskTopics)
+      task.topics.forEach((topic) => {
+        console.log("      Value a ", topic, editTaskTopics);
+        // editTaskTopics.push(topic);
+        setEditTaskTopics([
+          ...editTaskTopics,
+          topic,
+        ]);
+        console.log("      Value b ", topic, editTaskTopics);
+      });
+      // setEditTaskTopics(task.topics);
+      console.log(
+        "USEEFFECT OPEN DIALOG 2 ------------------------------------->",
+        openDialog,
+        task,
+        editTaskTopics
+      );
+>>>>>>> 5b27ff40b22a332faf6b0645d0cd1d8503b41db1
     }
   }, [openDialog]);
 
@@ -316,4 +346,8 @@ export const FormCreateTaskDialog = ({
       </Dialog>
     </div>
   );
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 5b27ff40b22a332faf6b0645d0cd1d8503b41db1

@@ -25,6 +25,7 @@ const TasksPage = () => {
     let userId = decoded.userId;
     console.log("TASKPAGE TOKEN", token, userId);
 
+<<<<<<< HEAD
     client.get(`/user/${userId}`).catch((err) => console.error("user error", err));
     if(sortOrder.sortBy === "updatedAt") {
       console.log("SortOrder ---------------------->", 1, sortOrder.order, sortOrder.priorityValues)
@@ -33,6 +34,11 @@ const TasksPage = () => {
       console.log("SortOrder ---------------------->", 2, sortOrder.order, sortOrder.priorityValues)
       renderTasksByUserIdAndPriority(userId, sortOrder.order === "desc" ? 1 : 2, sortOrder.priorityValues, setTasks);
     }
+=======
+    client.get(`/user/${id}`).catch((err) => console.error("user error", err));
+    // renderTasksByUserId(id, setTasks);
+    renderTasksByUserIdAndPriority(id, 1, setTasks);
+>>>>>>> 5b27ff40b22a332faf6b0645d0cd1d8503b41db1
     console.log("TASKPAGE tasks------------------------>", tasks);
     setTask({ ...task });
     // eslint-disable-next-line

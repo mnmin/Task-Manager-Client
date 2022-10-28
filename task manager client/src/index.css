@@ -19,7 +19,10 @@ body {
   /* background-position: center;  */
   background-image: url("./assets/Landing.jpg");
   background-repeat: repeat;
+<<<<<<< HEAD
   opacity: 90%;
+=======
+>>>>>>> 5b27ff40b22a332faf6b0645d0cd1d8503b41db1
   /* background-size: cover; */
   color: #fff;
 }

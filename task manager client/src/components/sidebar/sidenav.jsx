@@ -3,6 +3,7 @@ import styles from "./sidenav.module.css";
 // import { navData } from "../../utils/navdata";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+<<<<<<< HEAD
 import { useState, ChangeEvent } from "react";
 import Stack from "@mui/material/Stack";
 import IconButton from "@mui/material/IconButton";
@@ -27,6 +28,19 @@ const darkTheme = createTheme({
 });
 
 export default function Sidenav({ sortOrder, setSortOrder }) {
+=======
+import { useState } from "react";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
+import IconButton from "@mui/material/IconButton";
+
+import AddIcon from "@mui/icons-material/Add";
+import SortIcon from "@mui/icons-material/Sort";
+
+import { FormCreateTaskDialog } from "../tasks/utils/createTask";
+
+export default function Sidenav() {
+>>>>>>> 5b27ff40b22a332faf6b0645d0cd1d8503b41db1
   const [open, setopen] = useState(true);
   const toggleOpen = () => {
     setopen(!open);
@@ -40,6 +54,7 @@ export default function Sidenav({ sortOrder, setSortOrder }) {
   };
   const [showButtons, setShowButtons] = useState(true);
   const [openDialog, setOpenDialog] = useState(false);
+<<<<<<< HEAD
   const [sortOrderType, setSortOrderType] = useState(true);
   const [sortPriorityHigh, setSortPriorityHigh] = useState("HIGH");
   const [sortPriorityMedium, setSortPriorityMedium] = useState("MEDIUM");
@@ -54,11 +69,16 @@ export default function Sidenav({ sortOrder, setSortOrder }) {
   };
 
   const NewTaskBtn = () => (
+=======
+
+  const NewTask = () => (
+>>>>>>> 5b27ff40b22a332faf6b0645d0cd1d8503b41db1
     <Button variant="text" onClick={() => setOpenDialog(true)}>
       New Task
     </Button>
   );
 
+<<<<<<< HEAD
   const SortByPriorityBtn = () => (
     <Button variant="text" onClick={() => sortOrderActivate()}>
       Sort Priority
@@ -117,6 +137,15 @@ export default function Sidenav({ sortOrder, setSortOrder }) {
     }
   }
 
+=======
+  const SortByPriority = () => (
+    <Button variant="text">
+      Sort Priority
+      <input hidden accept="image/*" multiple type="file" />
+    </Button>
+  );
+
+>>>>>>> 5b27ff40b22a332faf6b0645d0cd1d8503b41db1
   return (
     <div className={open ? styles.sidenav : styles.sidenavClosed}>
       <button className={styles.menuBtn} onClick={toggleOpen}>
@@ -131,6 +160,7 @@ export default function Sidenav({ sortOrder, setSortOrder }) {
           dialogType={1}
           openDialog={openDialog}
           setOpenDialog={setOpenDialog}
+<<<<<<< HEAD
           task={{
             taskName: "",
             taskDescription: "",
@@ -139,6 +169,9 @@ export default function Sidenav({ sortOrder, setSortOrder }) {
             status: "TODO",
             priority: "MEDIUM",
           }}
+=======
+          task={{taskName: "", taskDescription: "", linksUrl: "", topics: "", status: "TODO", priority: "MEDIUM"}}
+>>>>>>> 5b27ff40b22a332faf6b0645d0cd1d8503b41db1
           // handleClick={handleClick}
         />
         <Stack direction="row" alignItems="center" spacing={2}>
@@ -151,13 +184,18 @@ export default function Sidenav({ sortOrder, setSortOrder }) {
             {/* <input hidden accept="image/*" type="file" /> */}
             <AddIcon />
           </IconButton>
+<<<<<<< HEAD
           {showButtons ? <NewTaskBtn /> : null}
+=======
+          {showButtons ? <NewTask /> : null}
+>>>>>>> 5b27ff40b22a332faf6b0645d0cd1d8503b41db1
         </Stack>
         <Stack direction="row" alignItems="center" spacing={2}>
           <IconButton
             color="primary"
             aria-label="upload picture"
             component="label"
+<<<<<<< HEAD
             onClick={() => toggleSortOrderType()}
           >
             <SortIcon />
@@ -230,6 +268,14 @@ export default function Sidenav({ sortOrder, setSortOrder }) {
           />
         </FormGroup>        
         </ThemeProvider>
+=======
+          >
+            <input hidden accept="image/*" type="file" />
+            <SortIcon />
+          </IconButton>
+          {showButtons ? <SortByPriority /> : null}
+        </Stack>
+>>>>>>> 5b27ff40b22a332faf6b0645d0cd1d8503b41db1
       </>
       {/* {navData.map(item =>{
             return <NavLink key={item.id} className={styles.sideitem} to={item.link}>

@@ -67,7 +67,11 @@ const Header = ({ companyName }) => {
             dialogType={1}
             openDialog={openDialog}
             setOpenDialog={setOpenDialog}
+<<<<<<< HEAD
             task={{taskName: "", taskDescription: "", linksUrl: "", topics: [], status: "TODO", priority: "MEDIUM"}}
+=======
+            task={{taskName: "", taskDescription: "", linksUrl: "", topics: "", status: "TODO", priority: "MEDIUM"}}
+>>>>>>> 5b27ff40b22a332faf6b0645d0cd1d8503b41db1
             // handleClick={handleClick}
           />
       <Box className="header-container">

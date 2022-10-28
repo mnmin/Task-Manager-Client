@@ -194,6 +194,7 @@ const TaskItem = ({ task, setTaskResponse }) => {
             {/* <p className="task-content">{task.taskName}</p>
             <p className="task-content">{task.taskDescription}</p>
             <p className="task-content">{task.linksUrl}</p>
+            {/* <p className="task-content">{task.topics}</p> */}
             <p className="task-content-select">{task.status}</p>
             <p className="task-content-select">{task.priority}</p> */}
             <Box

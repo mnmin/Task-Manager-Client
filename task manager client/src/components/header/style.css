@@ -1,7 +1,12 @@
 .header-container {
     display: flex;
+<<<<<<< HEAD
     /* background-color: grey; */
     /* opacity: 60%; */
+=======
+    background-color: grey;
+    opacity: 60%;
+>>>>>>> 5b27ff40b22a332faf6b0645d0cd1d8503b41db1
     justify-content: space-between;
     align-items: center;
     width: 100%;
