@@ -43,3 +43,26 @@ export function renderTasksByUserId(userId, setTasks) {
     })
     .catch((err) => console.error(err));
 }
+
+async function getAllTasksByUserIdAndPriority(userId, priorityOrder, priorityValues) {
+  try {
+    if (userId) {
+      const response = await client.get(`/tasks/${userId}/priorityOrder/${priorityOrder}/priorityValues/${priorityValues}`);
+      return response.data.data;
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export function renderTasksByUserIdAndPriority(userId, priorityOrder, priorityValues, setTasks) {
+  let allTasks = [];
+  getAllTasksByUserIdAndPriority(userId, priorityOrder, priorityValues)
+    .then((response) => {
+      console.log("GETALLTASKS by USERID and PRIORITY response", response);
+      allTasks = response;
+      console.log("GETALLTASKS by USERID and PRIORITY alltasks", allTasks);
+      setTasks(allTasks);
+    })
+    .catch((err) => console.error(err));
+}

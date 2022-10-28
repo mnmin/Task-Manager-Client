@@ -64,8 +64,10 @@ const Header = ({ companyName }) => {
     <>
       {authError && <Alert severity="error">This user cannot be found</Alert>}
       <FormCreateTaskDialog
+            dialogType={1}
             openDialog={openDialog}
             setOpenDialog={setOpenDialog}
+            task={{taskName: "", taskDescription: "", linksUrl: "", topics: [], status: "TODO", priority: "MEDIUM"}}
             // handleClick={handleClick}
           />
       <Box className="header-container">
@@ -74,15 +76,14 @@ const Header = ({ companyName }) => {
             <Link to="/tasks">{companyName}</Link>
           </Typography>
         </Box>
-
         <Box>
           <Stack spacing={2} direction="row">
-            <Button id="user-create-task-button" variant="contained" onClick={() => setOpenDialog(true)}>
+            {/* <Button id="user-create-task-button" variant="contained" onClick={() => setOpenDialog(true)}>
               Create Task
-            </Button>
-            <Button variant="contained" href="/tasks">
+            </Button> */}
+            {/* <Button variant="contained" href="/tasks">
               Tasks
-            </Button>
+            </Button> */}
             <Button id="user-signout-button" variant="contained" onClick={handleLogOut}>
               Logout
             </Button>

@@ -1,4 +1,4 @@
-import { Button, TextField, ClickAwayListener, Box } from "@mui/material";
+import { Button, TextField, ClickAwayListener } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
@@ -111,7 +111,6 @@ const TaskItem = ({ task, setTaskResponse }) => {
           <div className="task-profile-wrap">
             <h3 className={"task-owner-name"}>
               <div>
-                {/* <p className="task-id">Task # {task.id} {task.updatedAt}</p> */}
                 <p className="task-id">Task # {task.id}</p>
               </div>
             </h3>
@@ -191,66 +190,11 @@ const TaskItem = ({ task, setTaskResponse }) => {
           </>
         ) : (
           <>
-            {/* <p className="task-content">{task.taskName}</p>
+            <p className="task-content">{task.taskName}</p>
             <p className="task-content">{task.taskDescription}</p>
             <p className="task-content">{task.linksUrl}</p>
             <p className="task-content-select">{task.status}</p>
-            <p className="task-content-select">{task.priority}</p> */}
-            <Box
-              component="form"
-              sx={{
-                "& .MuiTextField-root": { m: 0.5, width: "25ch", height: "3.3em" }
-              }}
-              noValidate
-              autoComplete="off"
-            >
-              <div>
-                <TextField
-                  required
-                  sx={{
-                    "& .MuiInputBase-input": {
-                      overflow: "hidden",
-                      textOverflow: "ellipsis"
-                    }
-                  }}
-                  id="filled-required"
-                  label="Name"
-                  value={task.taskName}
-                  inputProps={{ readOnly: true }}
-                  variant="filled"
-                />
-                <TextField
-                  required
-                  sx={{
-                    "& .MuiInputBase-input": {
-                      overflow: "hidden",
-                      textOverflow: "ellipsis"
-                    }
-                  }}
-                  id="filled-disabled"
-                  label="Description"
-                  value={task.taskDescription}
-                  inputProps={{ readOnly: true }}
-                  variant="filled"
-                />
-                <TextField
-                  id="filled-password-input"
-                  label="Status"
-                  value={task.status}
-                  inputProps={{ readOnly: true }}
-                  variant="filled"
-                />
-                <TextField
-                  id="filled-read-only-input"
-                  label="Priority"
-                  value={task.priority}
-                  InputProps={{
-                    readOnly: true
-                  }}
-                  variant="filled"
-                />
-              </div>
-            </Box>
+            <p className="task-content-select">{task.priority}</p>
           </>
         )}
         {/* <p className="task-content">{task.taskDescription}</p> */}

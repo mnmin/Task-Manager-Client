@@ -10,52 +10,29 @@ import InputLabel from "@mui/material/InputLabel";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import client from "../../../utils/client";
-import { editTask } from "./editTask";
 import { useLoggedInUser } from "../../../context/LoggedInUser";
 import { useNavigate } from "react-router-dom";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import AddIcon from "@mui/icons-material/Add";
 import { Input } from "@mui/material";
 
-export const FormCreateTaskDialog = ({
-  dialogType,
-  openDialog,
-  setOpenDialog,
-  setTaskResponse,
-  setEditError,
-  task,
-}) => {
+export const FormCreateTaskDialog = ({ openDialog, setOpenDialog }) => {
   const navigate = useNavigate();
-  const [editTaskName, setEditTaskName] = useState(task.taskName);
-  const [editTaskDescription, setEditTaskDescription] = useState(
-    task.taskDescription
-  );
-  const [editTaskLinksUrl, setEditTaskLinksUrl] = useState(task.linksUrl);
-  const [editTaskStatus, setEditTaskStatus] = useState(task.status);
-  const [editTaskPriority, setEditTaskPriority] = useState(task.priority);
+  const [editTaskName, setEditTaskName] = useState("");
+  const [editTaskDescription, setEditTaskDescription] = useState("");
+  const [editTaskLinksUrl, setEditTaskLinksUrl] = useState("");
+  const [editTaskStatus, setEditTaskStatus] = useState("");
+  const [editTaskPriority, setEditTaskPriority] = useState("");
+
   const [topicValue, setTopicValue] = useState("");
-  // const [editTopic, setEditTopic] = useState("");
+  const [editTopic, setEditTopic] = useState("");
+  const [taskResponse, setTaskResponse] = useState("");
   const [newTopic, setNewTopic] = useState(false);
-  // const [editTaskTopics, setEditTaskTopics] = useState(task.topics);
-  const [editTaskTopics, setEditTaskTopics] = useState([]);
+  const [taskTopics, setTaskTopics] = useState([]);
 
   const { user } = useLoggedInUser();
-
-  const dialogTitle =
-    dialogType === 1
-      ? "Create a New Task"
-      : dialogType === 2
-      ? `Edit Task ${task.taskName}`
-      : `View Task ${task.taskName}`;
-  const dialogSubtitle =
-    dialogType === 1
-      ? "Use the following fields to create a new task"
-      : dialogType === 2
-      ? "Use the following fields to edit this task"
-      : "";
 
   const createNewTask = async (
     setResponse,
@@ -79,28 +56,8 @@ export const FormCreateTaskDialog = ({
       setResponse(data);
       return;
     } catch (error) {
-      //console.error(error.response.data);
-      return error.data;
-    }
-  };
-
-  const handleEditTask = async () => {
-    const res = await editTask(
-      setTaskResponse,
-      task.id,
-      editTaskName,
-      editTaskDescription,
-      editTaskTopics,
-      editTaskLinksUrl,
-      editTaskStatus,
-      editTaskPriority
-    );
-    if (res?.status === "fail") {
-      return setEditError(res.message);
-    } else {
-      // window.location.reload(false);
-      refreshTasks();
-      setOpenDialog(false);
+      console.error(error.response.data);
+      return error.response.data;
     }
   };
 
@@ -114,7 +71,7 @@ export const FormCreateTaskDialog = ({
       editTaskName,
       editTaskDescription,
       editTaskLinksUrl,
-      editTaskTopics,
+      taskTopics,
       editTaskStatus,
       editTaskPriority
     );
@@ -123,7 +80,7 @@ export const FormCreateTaskDialog = ({
       //return setEditError(res.message);
     } else {
       // window.location.reload(false);
-      refreshTasks();
+      //refreshTasks();
       setOpenDialog(false);
     }
   };
@@ -134,51 +91,34 @@ export const FormCreateTaskDialog = ({
   };
 
   const handleBlur = () => {
-    console.log("Pre Post--------------->", editTaskTopics, topicValue);
-    // setEditTaskTopics({ editTaskTopics: [...editTaskTopics, topicValue]});
-    let topics = editTaskTopics;
+    console.log("Pre Post--------------->", taskTopics, topicValue);
+    // setTaskTopics({ taskTopics: [...taskTopics, topicValue]});
+    let topics = taskTopics;
     topics.push(topicValue);
-    setEditTaskTopics(topics);
+    setTaskTopics(topics);
     setTopicValue("");
     setNewTopic(false);
-    // console.log("TASK TOPICS ------------------------------>", editTaskTopics)
+    // console.log("TASK TOPICS ------------------------------>", taskTopics)
   };
 
-  const handleDeleteTopic = (value) => {
-    // console.log("DELETE TOPIC PRE  ----------------------->", value, editTaskTopics)
-    setEditTaskTopics((curr) => curr.filter((topic) => topic !== value));
-    // console.log("DELETE TOPIC POST ----------------------->", value, editTaskTopics)
-    setNewTopic(false);
+  const handleDeleteTopic = (index) => {
+    let topics = taskTopics;
+    // console.log("TOPICS--------------------->", taskTopics)
+    topics.splice(index, 1);
+    // console.log("TOPICS AFTER--------------------->", taskTopics)
+    setTaskTopics(topics);
+    // console.log("INDEX------------------->", index)
   };
-
-  const dismissDialog = () => {
-    // console.log("DISMISS DIALOG -------------------------------------->")
-    setOpenDialog(false);
-  };
-
-  useEffect(() => {
-    if (openDialog) {
-      setEditTaskName(task.taskName);
-      setEditTaskDescription(task.taskDescription);
-      setEditTaskLinksUrl(task.linksUrl);
-      setEditTaskStatus(task.status);
-      setEditTaskPriority(task.priority);
-      setEditTaskTopics([]);
-      let topics = []
-      task.topics.forEach((topic) => {
-        topics.push(topic);
-      });
-      setEditTaskTopics(topics);
-    }
-  }, [openDialog]);
 
   return (
     <div>
       {/* <Dialog open={openDialog} onClose={setOpenDialog}> */}
       <Dialog open={openDialog} scroll="body">
-        <DialogTitle>{dialogTitle}</DialogTitle>
+        <DialogTitle>Create a New Task</DialogTitle>
         <DialogContent>
-          <DialogContentText>{dialogSubtitle}</DialogContentText>
+          <DialogContentText>
+            Use the following fields to create a new task
+          </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
@@ -186,7 +126,6 @@ export const FormCreateTaskDialog = ({
             label="Task Name"
             type="taskName"
             fullWidth
-            value={editTaskName}
             variant="outlined"
             size="small"
             inputProps={{ maxLength: 50 }}
@@ -198,7 +137,6 @@ export const FormCreateTaskDialog = ({
             label="Task Description"
             type="taskDescription"
             fullWidth
-            value={editTaskDescription}
             variant="outlined"
             size="small"
             multiline
@@ -211,7 +149,6 @@ export const FormCreateTaskDialog = ({
             label="Task Link URLs"
             type="linksUrl"
             fullWidth
-            value={editTaskLinksUrl}
             variant="outlined"
             size="small"
             multiline
@@ -219,38 +156,17 @@ export const FormCreateTaskDialog = ({
             onChange={(e) => setEditTaskLinksUrl(e.target.value)}
           />
           <ul className="topics-list">
-            {/* {editTaskTopics.map((topic, index) => (
+            {taskTopics.map((topic, index) => (
               <li className="topic-list-item" key={`${index}`} tabIndex="0">
                 <span>{topic}</span>
                 {
                   <DeleteForeverIcon
                     className="topic-list-item-delete"
                     tabIndex="0"
-                    onClick={() => handleDeleteTopic(topic)}
-                  />
-                }
-              </li> */}
-            {editTaskTopics.map(topic => (
-              <li className="topic-list-item" tabIndex="0">
-                <span>{topic}</span>
-                {
-                  <DeleteForeverIcon
-                    className="topic-list-item-delete"
-                    tabIndex="0"
-                    onClick={() => handleDeleteTopic(topic)}
+                    onClick={() => handleDeleteTopic(index)}
                   />
                 }
               </li>
-              // <li className="topic-list-item" key={`${index}`} tabIndex="0">
-              //   <span>{topic}</span>
-              //   {
-              //     <DeleteForeverIcon
-              //     className="topic-list-item-delete"
-              //     tabIndex="0"
-              //     onClick={() => handleDeleteTopic(topic)}
-              //   />
-              //   }
-              // </li>
             ))}
             <li>
               {newTopic ? (
@@ -305,13 +221,8 @@ export const FormCreateTaskDialog = ({
           </FormControl>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => dismissDialog()}>Cancel</Button>
-          {dialogType === 1 ? (
-            <Button onClick={() => handleCreateTask()}>Create</Button>
-          ) : null}
-          {dialogType === 2 ? (
-            <Button onClick={() => handleEditTask()}>Update</Button>
-          ) : null}
+          <Button onClick={() => setOpenDialog(false)}>Cancel</Button>
+          <Button onClick={() => handleCreateTask()}>Create</Button>
         </DialogActions>
       </Dialog>
     </div>
